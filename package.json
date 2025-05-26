@@ -1,0 +1,77 @@
+{
+  "name": "vue-router-better-view",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Enhances the RouterView & KeepAlive functionality of Vue Router.",
+  "author": "leihaohao <https://github.com/l246804>",
+  "license": "MIT",
+  "homepage": "https://github.com/l246804/vue-router-better-view/wiki",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/l246804/vue-router-better-view"
+  },
+  "bugs": {
+    "url": "https://github.com/l246804/vue-router-better-view/issues"
+  },
+  "keywords": [
+    "vue",
+    "vue-router",
+    "keepalive",
+    "cache",
+    "uniapp",
+    "taro",
+    "h5",
+    "web",
+    "webview"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "CHANGELOG.md",
+    "README.md",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm -C play dev",
+    "build": "tsdown",
+    "release": "release-it",
+    "taze": "taze -iI major",
+    "lint:fix": "eslint . --fix"
+  },
+  "peerDependencies": {
+    "vue": "^3",
+    "vue-router": "^4"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.13.2",
+    "@release-it/conventional-changelog": "^10.0.1",
+    "eslint": "^9.27.0",
+    "eslint-plugin-format": "^1.0.1",
+    "lint-staged": "^16.0.0",
+    "npm-run-all2": "^8.0.4",
+    "prettier": "^3.5.3",
+    "release-it": "^19.0.2",
+    "simple-git-hooks": "^2.13.0",
+    "tsdown": "^0.12.3",
+    "typescript": "^5.8.3",
+    "vue": "^3.5.14",
+    "vue-router": "^4.5.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  }
+}
