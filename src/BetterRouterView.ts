@@ -59,7 +59,7 @@ export const BetterRouterView: new () => {
             inheritAttrs: false,
             setup(_, { attrs, slots, expose }) {
               const inner$: ShallowRef<any> = shallowRef()
-              expose({ inner: inner$ })
+              expose({ inner: inner$, viewKey: name })
               return () => h(viewComponent, { ...attrs, ref: inner$ }, slots)
             },
           }),

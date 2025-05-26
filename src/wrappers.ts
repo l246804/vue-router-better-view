@@ -1,4 +1,4 @@
-import { App } from 'vue'
+import type { App } from 'vue'
 import type { RouteComponent } from 'vue-router'
 
 export type Wrappers = Map<string, RouteComponent>
