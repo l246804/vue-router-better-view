@@ -38,7 +38,7 @@ import { BetterRouterView } from 'vue-router-better-view'
 
 <template>
   <main>
-    <BetterRouterView />
+    <better-router-view />
   <main>
 </template>
 ```
@@ -52,7 +52,7 @@ export interface BetterRouterViewProps extends RouterViewProps {
    * @param route 当前路由
    * @returns 视图组件标识
    */
-  resolveViewKey?: (route: RouteLocationNormalizedLoaded) => string
+  resolveViewKey?: ResolveViewKey
 }
 ```
 
@@ -63,10 +63,9 @@ export interface BetterRouterViewProps extends RouterViewProps {
   setup
   lang="ts"
 >
-  import type { RouteLocationNormalizedLoaded } from 'vue-router'
-  import { BetterRouterView } from 'vue-router-better-view'
+  import { BetterRouterView, type ResolveViewKey } from 'vue-router-better-view'
 
-  function resolveViewKey(route: RouteLocationNormalizedLoaded) {
+  const resolveViewKey: ResolveViewKey = (route) => {
     // 如果 route.meta.singleton 为 true，则以路由的 path 作为视图组件标识
     if (route.meta.singleton) {
       return route.path
@@ -96,19 +95,7 @@ export interface BetterRouterViewProps extends RouterViewProps {
 
 ```diff
 <script setup lang="ts">
-import type { RouteLocationNormalizedLoaded } from 'vue-router'
-import { BetterRouterView } from 'vue-router-better-view'
 +import { ref } from 'vue'
-
-function resolveViewKey(route: RouteLocationNormalizedLoaded) {
-  // 如果 route.meta.singleton 为 true，则以路由的 path 作为视图组件标识
-  if (route.meta.singleton) {
-    return route.path
-  }
-
-  // 使用路由的 fullPath 作为视图组件标识
-  return route.fullPath
-}
 
 +const mainContent = ref<any>()
 +const resolveMainContent = () => {
@@ -118,17 +105,7 @@ function resolveViewKey(route: RouteLocationNormalizedLoaded) {
 </script>
 
 <template>
-  <main>
-    <better-router-view
-      v-slot="{ Component }"
-      :resolve-view-key="resolveViewKey"
-    >
-      <!-- include、exclude 可以根据 resolveViewKey 的返回值进行缓存处理 -->
-      <keep-alive>
 -        <component :is="Component" />
 +        <component :is="Component" ref="mainContent" />
-      </keep-alive>
-    </better-router-view>
-  </main>
 </template>
 ```

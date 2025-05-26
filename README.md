@@ -41,7 +41,7 @@ app.use(BetterRouterView)
 
 <template>
   <main>
-    <BetterRouterView />
+    <better-router-view />
   </main>
 </template>
 ```
@@ -56,7 +56,7 @@ export interface BetterRouterViewProps extends RouterViewProps {
    * @param route The current route
    * @returns The view component key
    */
-  resolveViewKey?: (route: RouteLocationNormalizedLoaded) => string
+  resolveViewKey?: ResolveViewKey
 }
 ```
 
@@ -67,10 +67,9 @@ export interface BetterRouterViewProps extends RouterViewProps {
   setup
   lang="ts"
 >
-  import type { RouteLocationNormalizedLoaded } from 'vue-router'
-  import { BetterRouterView } from 'vue-router-better-view'
+  import { BetterRouterView, type ResolveViewKey } from 'vue-router-better-view'
 
-  function resolveViewKey(route: RouteLocationNormalizedLoaded) {
+  const resolveViewKey: ResolveViewKey = (route) => {
     // If route.meta.singleton is true, use the route's path as the view component key
     if (route.meta.singleton) {
       return route.path
@@ -100,19 +99,7 @@ export interface BetterRouterViewProps extends RouterViewProps {
 
 ```diff
 <script setup lang="ts">
-import type { RouteLocationNormalizedLoaded } from 'vue-router'
-import { BetterRouterView } from 'vue-router-better-view'
 +import { ref } from 'vue'
-
-function resolveViewKey(route: RouteLocationNormalizedLoaded) {
-  // If route.meta.singleton is true, use the route's path as the view component key
-  if (route.meta.singleton) {
-    return route.path
-  }
-
-  // Use the route's fullPath as the view component key
-  return route.fullPath
-}
 
 +const mainContent = ref<any>()
 +const resolveMainContent = () => {
@@ -122,17 +109,7 @@ function resolveViewKey(route: RouteLocationNormalizedLoaded) {
 </script>
 
 <template>
-  <main>
-    <better-router-view
-      v-slot="{ Component }"
-      :resolve-view-key="resolveViewKey"
-    >
-      <!-- include/exclude can be used based on the return value of resolveViewKey -->
-      <keep-alive>
 -        <component :is="Component" />
 +        <component :is="Component" ref="mainContent" />
-      </keep-alive>
-    </better-router-view>
-  </main>
 </template>
 ```
