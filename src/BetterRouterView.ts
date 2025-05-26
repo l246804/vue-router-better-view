@@ -20,8 +20,12 @@ export interface SlotData {
   Component: VNode
 }
 
+export type ResolveViewKey = (
+  route: RouteLocationNormalizedLoaded,
+) => string | void | undefined | null
+
 export interface BetterRouterViewProps extends RouterViewProps {
-  resolveViewKey?: (route: RouteLocationNormalizedLoaded) => string | void | undefined | null
+  resolveViewKey?: ResolveViewKey
 }
 
 export const BetterRouterView: new () => {

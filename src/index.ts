@@ -10,3 +10,9 @@ const BetterRouterView: typeof Component & ObjectPlugin = /* #__PURE__ */ Object
 })
 
 export { BetterRouterView, BetterRouterView as default }
+
+declare module 'vue' {
+  interface GlobalComponents {
+    BetterRouterView: typeof BetterRouterView
+  }
+}
