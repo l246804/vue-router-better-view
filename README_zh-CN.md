@@ -2,9 +2,12 @@
 
 增强 [Vue Router](https://router.vuejs.org/) 的 [RouterView & KeepAlive](https://router.vuejs.org/zh/guide/advanced/router-view-slot.html#KeepAlive-Transition) 功能。
 
+[English Document](https://github.com/l246804/vue-router-better-view/blob/dev/README.md)
+
 ## 背景
 
 Vue Router 目前的 RouterView 组件在搭配 [KeepAlive](https://cn.vuejs.org/api/built-in-components.html#keepalive) 组件时存在以下问题：
+
 1. 无法根据[动态路由匹配](https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html)进行相同组件实例不同参数的缓存
 2. 路由组件必须设置不同的 `name` 属性，否则重名组件会缓存异常
 
@@ -56,19 +59,22 @@ export interface BetterRouterViewProps extends RouterViewProps {
 ## 示例
 
 ```html
-<script setup lang="ts">
-import type { RouteLocationNormalizedLoaded } from 'vue-router'
-import { BetterRouterView } from 'vue-router-better-view'
+<script
+  setup
+  lang="ts"
+>
+  import type { RouteLocationNormalizedLoaded } from 'vue-router'
+  import { BetterRouterView } from 'vue-router-better-view'
 
-function resolveViewKey(route: RouteLocationNormalizedLoaded) {
-  // 如果 route.meta.singleton 为 true，则以路由的 path 作为视图组件标识
-  if (route.meta.singleton) {
-    return route.path
+  function resolveViewKey(route: RouteLocationNormalizedLoaded) {
+    // 如果 route.meta.singleton 为 true，则以路由的 path 作为视图组件标识
+    if (route.meta.singleton) {
+      return route.path
+    }
+
+    // 使用路由的 fullPath 作为视图组件标识
+    return route.fullPath
   }
-
-  // 使用路由的 fullPath 作为视图组件标识
-  return route.fullPath
-}
 </script>
 
 <template>
