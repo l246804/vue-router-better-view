@@ -36,7 +36,7 @@ jobs:
         run: pnpm i
 
       - name: Build play
-        run: pnpm run build:play
+        run: pnpm run play:build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

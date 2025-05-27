@@ -46,9 +46,11 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "tsdown -w & pnpm -C play dev",
+    "dev": "tsdown -w",
     "build": "tsdown",
-    "build:play": "pnpm run build && pnpm -C play build",
+    "play:dev": "pnpm run dev & pnpm -C play run dev",
+    "play:build": "pnpm run build && pnpm -C play run build",
+    "play:preview": "pnpm run play:build && pnpm -C play run preview",
     "release": "release-it",
     "taze": "taze -iI major",
     "lint:fix": "eslint . --fix"

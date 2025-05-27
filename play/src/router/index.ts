@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import List2 from '@/views/List2.vue'
+import List from '@/views/List.vue'
+import ListDetail from '@/views/ListDetail.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,14 +13,14 @@ const router = createRouter({
       children: [
         {
           path: '/list',
-          component: () => import('@/views/List.vue'),
+          component: List,
           meta: {
             keepAlive: true,
           },
         },
         {
           path: '/list/detail/:viewKey',
-          component: () => import('@/views/ListDetail.vue'),
+          component: ListDetail,
           meta: {
             keepAlive: true,
           },
@@ -25,14 +28,14 @@ const router = createRouter({
 
         {
           path: '/list2',
-          component: () => import('@/views/List2.vue'),
+          component: List2,
           meta: {
             keepAlive: true,
           },
         },
         {
           path: '/list2/detail/:viewKey',
-          component: () => import('@/views/ListDetail.vue'),
+          component: ListDetail,
           meta: {
             keepAlive: true,
             singleton: true,
