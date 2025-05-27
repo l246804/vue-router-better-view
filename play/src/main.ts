@@ -1,7 +1,7 @@
 import ElementPlus from 'element-plus'
 import PlusProComponents from 'plus-pro-components'
 import { createApp } from 'vue'
-import BetterRouterView from '../../src'
+import BetterRouterView from 'vue-router-better-view'
 import App from './App.vue'
 import router from './router'
 import 'modern-normalize'

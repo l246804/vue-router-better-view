@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PlusRouteRecordRaw } from 'plus-pro-components'
-import type { ResolveViewKey } from '../../../src'
+import type { ResolveViewKey } from 'vue-router-better-view'
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 import Logo from '@/assets/logo.svg'
