@@ -4,6 +4,8 @@ Enhances the [RouterView & KeepAlive](https://router.vuejs.org/guide/advanced/ro
 
 [中文文档](https://github.com/l246804/vue-router-better-view/blob/dev/README_zh-CN.md)
 
+[Online example](https://l246804.github.io/vue-router-better-view/)
+
 ## Background
 
 The current [RouterView](file:///home/leihaohao/workspaces/own/vue-router-better-view/node_modules/.pnpm/vue-router@4.5.1_vue@3.5.14_typescript@5.8.3_/node_modules/vue-router/dist/vue-router.d.ts#L1603-L1613) component in Vue Router has the following limitations when used with the [KeepAlive](https://cn.vuejs.org/api/built-in-components.html#keepalive) component:

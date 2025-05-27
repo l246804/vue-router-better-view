@@ -4,6 +4,8 @@
 
 [English Document](https://github.com/l246804/vue-router-better-view/blob/dev/README.md)
 
+[在线示例](https://l246804.github.io/vue-router-better-view/)
+
 ## 背景
 
 Vue Router 目前的 RouterView 组件在搭配 [KeepAlive](https://cn.vuejs.org/api/built-in-components.html#keepalive) 组件时存在以下问题：
