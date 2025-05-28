@@ -101,7 +101,7 @@ export interface BetterRouterViewProps extends RouterViewProps {
 
 +const mainContent = ref<any>()
 +const resolveMainContent = () => {
-+  // 如果 resolveMainContent 返回值存在则需要使用 inner 属性获取原组件引用
++  // 优先使用 inner 属性获取原组件引用，不存在时使用 mainContent.value 兜底
 +  return mainContent.value?.inner || mainContent.value
 +}
 </script>

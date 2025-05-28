@@ -105,7 +105,8 @@ export interface BetterRouterViewProps extends RouterViewProps {
 
 +const mainContent = ref<any>()
 +const resolveMainContent = () => {
-+  // If resolveMainContent returns a value, use the inner property to get the original component reference
++  // Prefer using the inner property to get the reference of the original component;
++  // if it doesn't exist, fall back to mainContent.value.
 +  return mainContent.value?.inner || mainContent.value
 +}
 </script>
