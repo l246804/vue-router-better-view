@@ -2,7 +2,7 @@
 
 Enhances the [RouterView & KeepAlive](https://router.vuejs.org/guide/advanced/router-view-slot.html#KeepAlive-Transition) functionality of [Vue Router](https://router.vuejs.org/).
 
-[中文文档](https://github.com/l246804/vue-router-better-view/blob/dev/README_zh-CN.md)
+[中文文档](https://github.com/l246804/vue-router-better-view/blob/dev/README.zh-CN.md)
 
 [Online example](https://l246804.github.io/vue-router-better-view/)
 
