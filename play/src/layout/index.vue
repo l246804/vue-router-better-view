@@ -46,7 +46,7 @@ watch(
     :sidebar-props="{ routes }"
   >
     <BetterRouterView
-      v-slot="{ route, Component: viewComponent }"
+      v-slot="{ Component: viewComponent }"
       :resolve-view-key
     >
       <KeepAlive :include="[...keepAliveValues]">

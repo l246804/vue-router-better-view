@@ -5,6 +5,10 @@ const route = useRoute()
 const receiveTime = new Date(+route.query.time!).toLocaleString()
 const currentTime = new Date().toLocaleString()
 const isEquals = receiveTime === currentTime
+
+defineExpose({
+  test: route.fullPath,
+})
 </script>
 
 <template>

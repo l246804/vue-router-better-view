@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { keepAliveValues } from '@/stores/keepAlive'
 
 const details = ref<{ time: number }[]>([])
@@ -19,6 +19,10 @@ function gotoDetail(
   }
   router.push(fullPath)
 }
+
+defineExpose({
+  test: useRoute().fullPath,
+})
 </script>
 
 <template>

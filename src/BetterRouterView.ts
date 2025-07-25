@@ -59,7 +59,15 @@ export const BetterRouterView: new () => {
             inheritAttrs: false,
             setup(_, { attrs, slots, expose }) {
               const inner$: ShallowRef<any> = shallowRef()
-              expose({ inner: inner$, viewKey: name })
+              expose(
+                new Proxy(
+                  {},
+                  {
+                    get: (t, p) => Reflect.get(inner$.value || t, p),
+                    has: (t, p) => Reflect.get(inner$.value || t, p),
+                  },
+                ),
+              )
               return () => h(viewComponent, { ...attrs, ref: inner$ }, slots)
             },
           }),
