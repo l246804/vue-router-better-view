@@ -11,8 +11,17 @@ import type {
   RouteLocationNormalizedLoadedGeneric,
   RouterViewProps,
 } from 'vue-router'
-import { defineComponent, getCurrentInstance, h, shallowRef } from 'vue'
-import { RouterView } from 'vue-router'
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  h,
+  inject,
+  provide,
+  shallowRef,
+  toValue,
+} from 'vue'
+import { RouterView, useRoute, viewDepthKey } from 'vue-router'
 import { getWrappers } from './wrappers'
 
 export interface SlotData {
@@ -26,6 +35,7 @@ export type ResolveViewKey = (
 
 export interface BetterRouterViewProps extends RouterViewProps {
   resolveViewKey?: ResolveViewKey
+  exact?: boolean
 }
 
 export const BetterRouterView: new () => {
@@ -39,6 +49,9 @@ export const BetterRouterView: new () => {
   props: {
     resolveViewKey: {
       type: Function,
+    },
+    exact: {
+      type: Boolean,
     },
   },
   setup(props: BetterRouterViewProps, { attrs, slots }) {
@@ -75,6 +88,14 @@ export const BetterRouterView: new () => {
       }
       return wrappers.get(name)!
     }
+
+    const route = useRoute()
+    const viewDepth = inject(viewDepthKey, 0)
+    provide(
+      viewDepthKey,
+      // route.matched 最后一个往往就是精确匹配的，这里更改 viewDepth 后可以让其直接渲染对应的视图组件
+      computed(() => (props.exact ? route.matched.length - 1 : toValue(viewDepth))),
+    )
 
     return () =>
       h(RouterView, attrs, {
