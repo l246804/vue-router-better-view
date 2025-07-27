@@ -1,8 +1,0 @@
-packages:
-  - play
-
-onlyBuiltDependencies:
-  - esbuild
-  - simple-git-hooks
-  - unrs-resolver
-  - vue-demi
